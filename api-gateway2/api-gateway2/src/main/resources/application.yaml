@@ -1,0 +1,34 @@
+server:
+  port: 8080
+spring:
+  main:
+      web-application-type: reactive
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+          - id: login
+            uri: http://localhost:8081
+            predicates:
+            - Path=/api/auth/**
+
+          - id: producto
+            uri: http://localhost:8082
+            predicates:
+            - Path=/producto/**
+          
+          - id: carrito
+            uri: http://localhost:8083
+            predicates:
+            - Path=/carrito/**
+
+          - id: pago
+            uri: http://localhost:8084
+            predicates:
+            - Path=/pago/**
+            
+          - id: envio
+            uri: http://localhost:8085
+            predicates:
+            - Path=/envio/**

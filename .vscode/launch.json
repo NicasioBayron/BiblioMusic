@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "PagoApplication",
+            "request": "launch",
+            "mainClass": "com.pago.pago.PagoApplication",
+            "projectName": "pago"
+        },
+        {
+            "type": "java",
+            "name": "LoginApplication",
+            "request": "launch",
+            "mainClass": "com.login.login.LoginApplication",
+            "projectName": "login"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProductosApplication<productos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.productos.productos.ProductosApplication",
+            "vmArgs": "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=10000 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false",
+            "projectName": "productos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

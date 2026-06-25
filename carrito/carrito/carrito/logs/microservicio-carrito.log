@@ -1,0 +1,74 @@
+2026-05-29T13:05:53.772-04:00  INFO 22800 --- [carrito] [main] com.carrito.carrito.CarritoApplication   : Starting CarritoApplication using Java 25 with PID 22800 (C:\Users\Bayro\OneDrive\Desktop\bibliomusic\carrito\carrito\carrito\target\classes started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\carrito\carrito\carrito)
+2026-05-29T13:05:53.780-04:00 DEBUG 22800 --- [carrito] [main] com.carrito.carrito.CarritoApplication   : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-29T13:05:53.781-04:00  INFO 22800 --- [carrito] [main] com.carrito.carrito.CarritoApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-05-29T13:05:54.620-04:00  INFO 22800 --- [carrito] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-29T13:05:54.684-04:00  INFO 22800 --- [carrito] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 1 JPA repository interface.
+2026-05-29T13:05:55.289-04:00  INFO 22800 --- [carrito] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8083 (http)
+2026-05-29T13:05:55.302-04:00  INFO 22800 --- [carrito] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-29T13:05:55.302-04:00  INFO 22800 --- [carrito] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-29T13:05:55.383-04:00  INFO 22800 --- [carrito] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1551 ms
+2026-05-29T13:05:55.583-04:00  INFO 22800 --- [carrito] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-29T13:05:55.773-04:00  INFO 22800 --- [carrito] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@28ee882c
+2026-05-29T13:05:55.776-04:00  INFO 22800 --- [carrito] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-29T13:05:57.083-04:00  INFO 22800 --- [carrito] [main] liquibase.ui                             : INFO: The drop-all command may result in unrecoverable destructive changes to objects at 'jdbc:mysql://localhost:3306/dbcarrito?createDatabaseIfNotExist=true'.
+To protect against unwanted drops, set --requireForce=true, which will require a --force=true flag on the command.
+Learn more at https://docs.liquibase.com/dropall.
+
+2026-05-29T13:05:57.211-04:00  INFO 22800 --- [carrito] [main] liquibase.lockservice                    : Successfully acquired change log lock
+2026-05-29T13:05:57.217-04:00  INFO 22800 --- [carrito] [main] liquibase.command                        : Dropping Database Objects in schema: dbcarrito.dbcarrito
+2026-05-29T13:05:57.220-04:00  INFO 22800 --- [carrito] [main] liquibase.snapshot                       : Creating snapshot
+2026-05-29T13:05:57.726-04:00  INFO 22800 --- [carrito] [main] liquibase.database                       : Successfully deleted all supported object types in schema dbcarrito.dbcarrito.
+2026-05-29T13:05:57.729-04:00  INFO 22800 --- [carrito] [main] liquibase.snapshot                       : Creating snapshot
+2026-05-29T13:05:57.732-04:00  WARN 22800 --- [carrito] [main] liquibase.lockservice                    : Failed to release change log lock
+2026-05-29T13:05:57.734-04:00  INFO 22800 --- [carrito] [main] liquibase.ui                             : All objects dropped from root@localhost@jdbc:mysql://localhost:3306/dbcarrito?createDatabaseIfNotExist=true
+2026-05-29T13:05:57.736-04:00  INFO 22800 --- [carrito] [main] liquibase.command                        : Command execution complete
+2026-05-29T13:05:57.793-04:00  INFO 22800 --- [carrito] [main] liquibase.changelog                      : Creating database changelog table with name: dbcarrito.databasechangelog
+2026-05-29T13:05:57.816-04:00  INFO 22800 --- [carrito] [main] liquibase.changelog                      : Reading from dbcarrito.databasechangelog
+2026-05-29T13:05:57.824-04:00  INFO 22800 --- [carrito] [main] liquibase.snapshot                       : Creating snapshot
+2026-05-29T13:05:57.855-04:00  INFO 22800 --- [carrito] [main] liquibase.ui                             : Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
+2026-05-29T13:05:57.891-04:00  INFO 22800 --- [carrito] [main] liquibase.lockservice                    : Successfully acquired change log lock
+2026-05-29T13:05:57.892-04:00  INFO 22800 --- [carrito] [main] liquibase.command                        : Using deploymentId: 0074355567
+2026-05-29T13:05:57.894-04:00  INFO 22800 --- [carrito] [main] liquibase.changelog                      : Reading from dbcarrito.databasechangelog
+2026-05-29T13:05:57.905-04:00  INFO 22800 --- [carrito] [main] liquibase.ui                             : Running Changeset: db/changelog/db.carrito.sql::7::erick
+2026-05-29T13:05:57.929-04:00  INFO 22800 --- [carrito] [main] liquibase.changelog                      : Custom SQL executed
+2026-05-29T13:05:57.931-04:00  INFO 22800 --- [carrito] [main] liquibase.changelog                      : ChangeSet db/changelog/db.carrito.sql::7::erick ran successfully in 24ms
+2026-05-29T13:05:57.943-04:00  INFO 22800 --- [carrito] [main] liquibase.ui                             : Running Changeset: db/changelog/db.carrito.sql::8::erick
+2026-05-29T13:05:57.954-04:00  INFO 22800 --- [carrito] [main] liquibase.changelog                      : Custom SQL executed
+2026-05-29T13:05:57.958-04:00  INFO 22800 --- [carrito] [main] liquibase.changelog                      : ChangeSet db/changelog/db.carrito.sql::8::erick ran successfully in 13ms
+2026-05-29T13:05:57.971-04:00  INFO 22800 --- [carrito] [main] liquibase.util                           : UPDATE SUMMARY
+2026-05-29T13:05:57.972-04:00  INFO 22800 --- [carrito] [main] liquibase.util                           : Run:                          2
+2026-05-29T13:05:57.972-04:00  INFO 22800 --- [carrito] [main] liquibase.util                           : Previously run:               0
+2026-05-29T13:05:57.973-04:00  INFO 22800 --- [carrito] [main] liquibase.util                           : Filtered out:                 0
+2026-05-29T13:05:57.973-04:00  INFO 22800 --- [carrito] [main] liquibase.util                           : -------------------------------
+2026-05-29T13:05:57.973-04:00  INFO 22800 --- [carrito] [main] liquibase.util                           : Total change sets:            2
+2026-05-29T13:05:57.975-04:00  INFO 22800 --- [carrito] [main] liquibase.util                           : Update summary generated
+2026-05-29T13:05:57.979-04:00  INFO 22800 --- [carrito] [main] liquibase.command                        : Update command completed successfully.
+2026-05-29T13:05:57.979-04:00  INFO 22800 --- [carrito] [main] liquibase.ui                             : Liquibase: Update has been successful. Rows affected: 10
+2026-05-29T13:05:57.985-04:00  INFO 22800 --- [carrito] [main] liquibase.lockservice                    : Successfully released change log lock
+2026-05-29T13:05:57.986-04:00  INFO 22800 --- [carrito] [main] liquibase.command                        : Command execution complete
+2026-05-29T13:05:58.089-04:00  INFO 22800 --- [carrito] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-29T13:05:58.142-04:00  INFO 22800 --- [carrito] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-29T13:05:58.593-04:00  INFO 22800 --- [carrito] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-29T13:05:58.653-04:00  WARN 22800 --- [carrito] [main] org.hibernate.orm.core                   : HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+2026-05-29T13:05:58.670-04:00  INFO 22800 --- [carrito] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/dbcarrito?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: dbcarrito/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-29T13:05:59.531-04:00  INFO 22800 --- [carrito] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-29T13:05:59.538-04:00  INFO 22800 --- [carrito] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-29T13:05:59.605-04:00  INFO 22800 --- [carrito] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-29T13:05:59.784-04:00  WARN 22800 --- [carrito] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-29T13:06:00.181-04:00  INFO 22800 --- [carrito] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-29T13:06:00.260-04:00  INFO 22800 --- [carrito] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8083 (http) with context path '/'
+2026-05-29T13:06:00.269-04:00  INFO 22800 --- [carrito] [main] com.carrito.carrito.CarritoApplication   : Started CarritoApplication in 6.983 seconds (process running for 7.349)
+2026-05-29T13:07:12.102-04:00  INFO 22800 --- [carrito] [http-nio-8083-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-29T13:07:12.103-04:00  INFO 22800 --- [carrito] [http-nio-8083-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-29T13:07:12.108-04:00  INFO 22800 --- [carrito] [http-nio-8083-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
