@@ -1,10 +1,247 @@
 version: '3.8'
 
 services:
-  boleta-service:
-    build: .
-    container_name: contenedor-boletas
+  # ========================================================
+  # 1. LAS 10 BASES DE DATOS MYSQL INDEPENDIENTES
+  # Ejecutar Docker: docker-compose up --build o COMPOSE_PARALLEL_LIMIT=1 docker-compose up --build
+  # Ejecutar tests:
+  # Paso 1: Cambiar ruta al microservicio y poner: Remove-Item -Recurse -Force .\target
+  # Paso 2: Ejecutar: ./mvnw clean test
+  # ========================================================
+  db-login:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_login
     ports:
-      - "8090:8090"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - "3306:3306"
+    networks:
+      - hospital-network
+
+  db-producto:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_productos
+    ports:
+      - "3307:3306"
+    networks:
+      - hospital-network
+
+  db-carrito:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_carrito
+    ports:
+      - "3308:3306"
+    networks:
+      - hospital-network
+
+  db-pago:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_pago
+    ports:
+      - "3309:3306"
+    networks:
+      - hospital-network
+
+  db-envio:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_envio
+    ports:
+      - "3310:3306"
+    networks:
+      - hospital-network
+
+  db-provedorees:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_provedorees
+    ports:
+      - "3311:3306"
+    networks:
+      - hospital-network
+
+  db-resenas:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_resenas
+    ports:
+      - "3312:3306"
+    networks:
+      - hospital-network
+
+  db-inventario:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_inventario
+    ports:
+      - "3313:3306"
+    networks:
+      - hospital-network
+
+  db-cupones:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_cupones
+    ports:
+      - "3314:3306"
+    networks:
+      - hospital-network
+
+  db-boleta:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_boleta
+    ports:
+      - "3315:3306"
+    networks:
+      - hospital-network
+
+  # ========================================================
+  # 2. EL API GATEWAY (ÚNICO EXPUESTO AL MUNDO)
+  # ========================================================
+  api-gateway:
+    build: ./api-gateway2
+    ports:
+      - "8080:8080"
+    depends_on:
+      - login-service
+      - producto-service
+      - carrito-service
+      - pago-service
+      - envio-service
+      - provedorees-service
+      - resenas-service
+      - inventario-service
+      - cupones-service
+      - boleta-service
+    networks:
+      - hospital-network
+
+  # ========================================================
+  # 3. LOS 10 MICROSERVICIOS SPRING BOOT
+  # ========================================================
+  login-service:
+    build: ./login
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-login:3306/db_login?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-login
+    networks:
+      - hospital-network
+
+  producto-service:
+    build: ./productos
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-producto:3306/db_productos?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-producto
+    networks:
+      - hospital-network
+
+  carrito-service:
+    build: ./carrito
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-carrito:3306/db_carrito?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-carrito
+    networks:
+      - hospital-network
+
+  pago-service:
+    build: ./pago
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-pago:3306/db_pago?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-pago
+    networks:
+      - hospital-network
+
+  envio-service:
+    build: ./envio
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-envio:3306/db_envio?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-envio
+    networks:
+      - hospital-network
+
+  provedorees-service:
+    build: ./provedorees
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-provedorees:3306/db_provedorees?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-provedorees
+    networks:
+      - hospital-network
+
+  resenas-service:
+    build: ./resenas
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-resenas:3306/db_resenas?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-resenas
+    networks:
+      - hospital-network
+
+  inventario-service:
+    build: ./inventario
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-inventario:3306/db_inventario?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-inventario
+    networks:
+      - hospital-network
+
+  cupones-service:
+    build: ./cupones
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-cupones:3306/db_cupones?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-cupones
+    networks:
+      - hospital-network
+
+  boleta-service:
+    build: ./boleta
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-boleta:3306/db_boleta?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      - db-boleta
+    networks:
+      - hospital-network
+
+networks:
+  hospital-network:
+    driver: bridge

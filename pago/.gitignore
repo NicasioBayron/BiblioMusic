@@ -31,3 +31,21 @@ build/
 
 ### VS Code ###
 .vscode/
+# Carpetas de compilación de Java (¡Súper pesadas, Docker las generará solo!)
+target/
+*.jar
+*.war
+
+# Archivos de configuración arcaicos del IDE o de VS Code
+.settings/
+.target/
+.classpath
+.project
+.buildpath
+.factorypath
+.vscode/
+.idea/
+*.iml
+
+# Logs del sistema
+*.log

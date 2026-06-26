@@ -1,14 +1,19 @@
-# 1. Usamos una imagen ligera de Java 21 (o la versión que uses en tu pom.xml)
-FROM eclipse-temurin:21-jdk-alpine
-
-# 2. Creamos la carpeta dentro del contenedor donde vivirá la app
+# ETAPA 1: Usamos Maven con Java 21 para compilar el código
+FROM maven:3.8.8-eclipse-temurin-21 AS build
 WORKDIR /app
 
-# 3. Copiamos el archivo .jar compilado desde nuestra carpeta target hacia el contenedor
-COPY target/*.jar app.jar
+# Copiamos todo el código fuente del microservicio al contenedor
+COPY . .
 
-# 4. Le avisamos a Docker que este contenedor usará el puerto 8090 (el de tus boletas)
-EXPOSE 8090
+# Compilamos saltándonos los tests (porque ya sabemos que dan verde impecable)
+RUN mvn clean package -DskipTests
 
-# 5. El comando definitivo para arrancar tu microservicio al encender el contenedor
+# ETAPA 2: Creamos la imagen final de ejecución usando Java 21 Alpine (ultra ligera)
+FROM eclipse-temurin:21-jdk-alpine
+WORKDIR /app
+
+# Copiamos el archivo .jar generado en la etapa de compilación
+COPY --from=build /app/target/*.jar app.jar
+
+# Comando para arrancar el microservicio
 ENTRYPOINT ["java", "-jar", "app.jar"]

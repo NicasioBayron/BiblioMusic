@@ -2,33 +2,56 @@ server:
   port: 8080
 spring:
   main:
-      web-application-type: reactive
+    web-application-type: reactive
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
-          - id: login
-            uri: http://localhost:8081
-            predicates:
+      routes:
+        - id: login
+          uri: http://login-service:8081
+          predicates:
             - Path=/api/auth/**
 
-          - id: producto
-            uri: http://localhost:8082
-            predicates:
+        - id: producto
+          uri: http://producto-service:8082
+          predicates:
             - Path=/producto/**
           
-          - id: carrito
-            uri: http://localhost:8083
-            predicates:
+        - id: carrito
+          uri: http://carrito-service:8083
+          predicates:
             - Path=/carrito/**
 
-          - id: pago
-            uri: http://localhost:8084
-            predicates:
+        - id: pago
+          uri: http://pago-service:8084
+          predicates:
             - Path=/pago/**
             
-          - id: envio
-            uri: http://localhost:8085
-            predicates:
+        - id: envio
+          uri: http://envio-service:8085
+          predicates:
             - Path=/envio/**
+
+        - id: provedorees
+          uri: http://provedorees-service:8086
+          predicates:
+          - Path=/provedorees/**
+
+        - id: resenas
+          uri: http://resenas-service:8087
+          predicates:
+          - Path=/resenas/**
+
+        - id: inventario
+          uri: http://inventario-service:8088
+          predicates:
+          - Path=/inventario/**
+
+        - id: cupones
+          uri: http://cupones-service:8089
+          predicates:
+          - Path=/cupones/**
+
+        - id: boleta
+          uri: http://boleta-service:8090
+          predicates:
+          - Path=/boletas/**
