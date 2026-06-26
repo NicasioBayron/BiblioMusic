@@ -1,5 +1,8 @@
 package com.productos.productos.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +22,20 @@ public class productoController {
     @GetMapping
     public ResponseEntity<?> getAllProductos() {
         Iterable<Producto> productos = productoService.getAllProductos();
-        return ResponseEntity.ok(productos);
+        List<ProductoDTO> respuesta = new ArrayList<>();
+        productos.forEach(producto -> respuesta.add(ProductoDTO.fromModel(producto)));
+        return ResponseEntity.ok(respuesta);
     }
 
     @PostMapping
-    public ResponseEntity<?> crearProducto(@RequestBody Producto producto) {
-        productoService.crearProducto(producto);
+    public ResponseEntity<?> crearProducto(@RequestBody ProductoDTO productoDto) {
+        productoService.crearProducto(productoDto.toModel());
         return ResponseEntity.ok("Producto creado exitosamente");
     }
 
     @PutMapping
-    public ResponseEntity<?> actualizarProducto(@RequestBody Producto producto) {
-        productoService.actualizarProducto(producto);
+    public ResponseEntity<?> actualizarProducto(@RequestBody ProductoDTO productoDto) {
+        productoService.actualizarProducto(productoDto.toModel());
         return ResponseEntity.ok("Producto actualizado exitosamente");
     }
 

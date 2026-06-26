@@ -1,0 +1,24 @@
+2026-06-25T21:19:30.923-04:00  INFO 32708 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Starting EnvioControllerTests using Java 25 with PID 32708 (started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\envio)
+2026-06-25T21:19:30.930-04:00 DEBUG 32708 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-25T21:19:30.931-04:00  INFO 32708 --- [envio] [main] c.e.e.E.EnvioControllerTests             : No active profile set, falling back to 1 default profile: "default"
+2026-06-25T21:19:33.856-04:00  INFO 32708 --- [envio] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-25T21:19:33.858-04:00  INFO 32708 --- [envio] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-25T21:19:33.861-04:00  INFO 32708 --- [envio] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-06-25T21:19:33.903-04:00  INFO 32708 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Started EnvioControllerTests in 3.554 seconds (process running for 5.347)
+2026-06-25T21:19:34.947-04:00  INFO 32708 --- [envio] [main] com.envio.envio.service.EnvioService     : Envio guardado exitosamente en la base de datos.
+2026-06-25T21:20:24.587-04:00  INFO 9416 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Starting EnvioControllerTests using Java 25 with PID 9416 (started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\envio)
+2026-06-25T21:20:24.590-04:00 DEBUG 9416 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-25T21:20:24.591-04:00  INFO 9416 --- [envio] [main] c.e.e.E.EnvioControllerTests             : No active profile set, falling back to 1 default profile: "default"
+2026-06-25T21:20:27.681-04:00  INFO 9416 --- [envio] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-25T21:20:27.682-04:00  INFO 9416 --- [envio] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-25T21:20:27.686-04:00  INFO 9416 --- [envio] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-06-25T21:20:27.734-04:00  INFO 9416 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Started EnvioControllerTests in 3.729 seconds (process running for 5.4)
+2026-06-25T21:20:28.821-04:00  INFO 9416 --- [envio] [main] com.envio.envio.service.EnvioService     : Envio guardado exitosamente en la base de datos.
+2026-06-25T21:21:00.632-04:00  INFO 38580 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Starting EnvioControllerTests using Java 25 with PID 38580 (started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\envio)
+2026-06-25T21:21:00.634-04:00 DEBUG 38580 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-25T21:21:00.635-04:00  INFO 38580 --- [envio] [main] c.e.e.E.EnvioControllerTests             : No active profile set, falling back to 1 default profile: "default"
+2026-06-25T21:21:03.897-04:00  INFO 38580 --- [envio] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-25T21:21:03.898-04:00  INFO 38580 --- [envio] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-25T21:21:03.901-04:00  INFO 38580 --- [envio] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2026-06-25T21:21:03.958-04:00  INFO 38580 --- [envio] [main] c.e.e.E.EnvioControllerTests             : Started EnvioControllerTests in 3.907 seconds (process running for 6.087)
+2026-06-25T21:21:05.494-04:00  INFO 38580 --- [envio] [main] com.envio.envio.service.EnvioService     : Envio guardado exitosamente en la base de datos.

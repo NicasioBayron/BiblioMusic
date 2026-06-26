@@ -1,0 +1,9 @@
+2026-06-25T21:25:02.082-04:00  INFO 7352 --- [pago] [main] c.p.p.P.PagoControllerTests              : Starting PagoControllerTests using Java 25 with PID 7352 (started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\pago)
+2026-06-25T21:25:02.089-04:00 DEBUG 7352 --- [pago] [main] c.p.p.P.PagoControllerTests              : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-25T21:25:02.090-04:00  INFO 7352 --- [pago] [main] c.p.p.P.PagoControllerTests              : No active profile set, falling back to 1 default profile: "default"
+2026-06-25T21:25:05.029-04:00  INFO 7352 --- [pago] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-25T21:25:05.030-04:00  INFO 7352 --- [pago] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-25T21:25:05.033-04:00  INFO 7352 --- [pago] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-06-25T21:25:05.069-04:00  INFO 7352 --- [pago] [main] c.p.p.P.PagoControllerTests              : Started PagoControllerTests in 3.61 seconds (process running for 5.496)
+2026-06-25T21:25:06.305-04:00  INFO 7352 --- [pago] [main] com.pago.pago.service.PagoService        : Calculando el total para el carrito...
+2026-06-25T21:25:06.306-04:00  INFO 7352 --- [pago] [main] com.pago.pago.service.PagoService        : Pago guardado exitosamente en la base de datos.

@@ -1,7 +1,7 @@
 package com.productos.productos.productoDTO;
 
 import com.productos.productos.model.Producto;
-import com.productos.productos.model.detalle_producto;
+import com.productos.productos.productoDTO.DetalleProductoDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class ProductoDTO {
     private String tipo_producto;
     private double precio;
     private int stock;
-    private List<detalle_producto> detalles;
+    private List<DetalleProductoDTO> detalles;
 
     public Producto toModel() {
         Producto p = new Producto();
@@ -29,10 +29,10 @@ public class ProductoDTO {
         p.setTipo_producto(this.tipo_producto);
         p.setPrecio(this.precio);
         p.setStock(this.stock);
-        
+
         if (this.detalles != null) {
-            for (detalle_producto d : this.detalles) {
-                p.addDetalle(d);
+            for (DetalleProductoDTO d : this.detalles) {
+                p.addDetalle(d.toModel());
             }
         }
         return p;
@@ -41,13 +41,18 @@ public class ProductoDTO {
     public static ProductoDTO fromModel(Producto p) {
         if (p == null)
             return null;
+
+        List<DetalleProductoDTO> detalleDto = null;
+        if (p.getDetalles() != null) {
+            detalleDto = p.getDetalles().stream().map(DetalleProductoDTO::fromModel).toList();
+        }
         return new ProductoDTO(
-            p.getId_producto(), 
-            p.getNombre_producto(), 
-            p.getTipo_producto(), 
+            p.getId_producto(),
+            p.getNombre_producto(),
+            p.getTipo_producto(),
             p.getPrecio(),
             p.getStock(),
-            p.getDetalles()
+            detalleDto
         );
     }
 }

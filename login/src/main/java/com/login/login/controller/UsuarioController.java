@@ -7,8 +7,15 @@ import com.login.login.service.UsuarioService;
 import com.login.login.DTO.LoginDTO;
 import com.login.login.DTO.RegisterDTO;
 import com.login.login.service.JwtService;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import com.login.login.assembler.UsuarioAssembler;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import com.login.login.model.Usuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -19,6 +26,9 @@ public class UsuarioController {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private UsuarioAssembler assembler;
 
     @PostMapping("/login")
     public java.util.Map<String, String> login(@RequestBody LoginDTO request) {
@@ -63,7 +73,10 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso denegado: Se requiere rol de Admin");
         }
 
-        return ResponseEntity.ok(usuarioService.getAllUsuarios());
+        List<Usuario> usuarios = usuarioService.getAllUsuarios();
+        CollectionModel<EntityModel<Usuario>> model = assembler.toCollectionModel(usuarios);
+        model.add(linkTo(methodOn(UsuarioController.class).getUsuarios(token)).withSelfRel());
+        return ResponseEntity.ok(model);
     }
 
     @PutMapping("/usuarios/{id}")
@@ -82,7 +95,7 @@ public class UsuarioController {
         if (updatedUsuario == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(java.util.Map.of("error", "Usuario no encontrado"));
         }
-        return ResponseEntity.ok(updatedUsuario);
+        return ResponseEntity.ok(assembler.toModel(updatedUsuario));
     }
 
     @GetMapping("/usuarios/{id}")
@@ -103,7 +116,7 @@ public class UsuarioController {
         if (usuario == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(java.util.Map.of("error", "Usuario no encontrado"));
         }
-        return ResponseEntity.ok(usuario);
+        return ResponseEntity.ok(assembler.toModel(usuario));
     }
 
     @GetMapping("/usuario/correo/{correo}")
@@ -115,7 +128,7 @@ public class UsuarioController {
         if (usuario == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(java.util.Map.of("error", "Usuario no encontrado"));
         }
-        return ResponseEntity.ok(usuario);
+        return ResponseEntity.ok(assembler.toModel(usuario));
     }
 
     @DeleteMapping("/usuarios/{id}")

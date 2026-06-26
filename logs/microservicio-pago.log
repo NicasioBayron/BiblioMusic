@@ -1,4 +1,0 @@
-2026-06-19T17:40:49.185-04:00  INFO 13460 --- [pago] [main] com.pago.pago.PagoApplication            : Starting PagoApplication using Java 21.0.10 with PID 13460 (C:\Users\Bayro\OneDrive\Desktop\bibliomusic\pago\pago\pago\target\classes started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic)
-2026-06-19T17:40:49.189-04:00 DEBUG 13460 --- [pago] [main] com.pago.pago.PagoApplication            : Running with Spring Boot v4.0.6, Spring v7.0.7
-2026-06-19T17:40:49.190-04:00  INFO 13460 --- [pago] [main] com.pago.pago.PagoApplication            : No active profile set, falling back to 1 default profile: "default"
-2026-06-19T17:40:50.618-04:00  INFO 13460 --- [pago] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
