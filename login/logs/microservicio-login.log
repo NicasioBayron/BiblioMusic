@@ -1,7 +1,21 @@
-2026-06-25T21:22:52.949-04:00  INFO 26688 --- [login] [main] c.l.l.L.LoginControllerTests             : Starting LoginControllerTests using Java 25 with PID 26688 (started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\login)
-2026-06-25T21:22:52.959-04:00 DEBUG 26688 --- [login] [main] c.l.l.L.LoginControllerTests             : Running with Spring Boot v4.0.6, Spring v7.0.7
-2026-06-25T21:22:52.962-04:00  INFO 26688 --- [login] [main] c.l.l.L.LoginControllerTests             : No active profile set, falling back to 1 default profile: "default"
-2026-06-25T21:22:56.108-04:00  INFO 26688 --- [login] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2026-06-25T21:22:56.109-04:00  INFO 26688 --- [login] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-06-25T21:22:56.112-04:00  INFO 26688 --- [login] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
-2026-06-25T21:22:56.158-04:00  INFO 26688 --- [login] [main] c.l.l.L.LoginControllerTests             : Started LoginControllerTests in 3.736 seconds (process running for 5.535)
+2026-06-26T00:18:15.633-04:00  INFO 25108 --- [login] [main] c.l.l.L.LoginControllerTests             : Starting LoginControllerTests using Java 25 with PID 25108 (started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\login)
+2026-06-26T00:18:15.642-04:00 DEBUG 25108 --- [login] [main] c.l.l.L.LoginControllerTests             : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-26T00:18:15.643-04:00  INFO 25108 --- [login] [main] c.l.l.L.LoginControllerTests             : No active profile set, falling back to 1 default profile: "default"
+2026-06-26T00:18:18.994-04:00  INFO 25108 --- [login] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-26T00:18:18.995-04:00  INFO 25108 --- [login] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-26T00:18:18.999-04:00  INFO 25108 --- [login] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-06-26T00:18:19.048-04:00  INFO 25108 --- [login] [main] c.l.l.L.LoginControllerTests             : Started LoginControllerTests in 3.86 seconds (process running for 5.349)
+2026-06-26T00:56:28.959-04:00  INFO 30728 --- [login] [main] c.l.l.L.LoginControllerTests             : Starting LoginControllerTests using Java 25 with PID 30728 (started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\login)
+2026-06-26T00:56:28.964-04:00 DEBUG 30728 --- [login] [main] c.l.l.L.LoginControllerTests             : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-26T00:56:28.965-04:00  INFO 30728 --- [login] [main] c.l.l.L.LoginControllerTests             : No active profile set, falling back to 1 default profile: "default"
+2026-06-26T00:56:31.009-04:00  INFO 30728 --- [login] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-26T00:56:31.010-04:00  INFO 30728 --- [login] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-26T00:56:31.013-04:00  INFO 30728 --- [login] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-06-26T00:56:31.040-04:00  INFO 30728 --- [login] [main] c.l.l.L.LoginControllerTests             : Started LoginControllerTests in 2.477 seconds (process running for 3.688)
+2026-06-26T01:40:45.499-04:00  INFO 15400 --- [login] [main] c.l.l.L.LoginControllerTests             : Starting LoginControllerTests using Java 25 with PID 15400 (started by Bayro in C:\Users\Bayro\OneDrive\Desktop\bibliomusic\login)
+2026-06-26T01:40:45.504-04:00 DEBUG 15400 --- [login] [main] c.l.l.L.LoginControllerTests             : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-26T01:40:45.506-04:00  INFO 15400 --- [login] [main] c.l.l.L.LoginControllerTests             : No active profile set, falling back to 1 default profile: "default"
+2026-06-26T01:40:51.853-04:00  INFO 15400 --- [login] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-06-26T01:40:51.854-04:00  INFO 15400 --- [login] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-06-26T01:40:51.860-04:00  INFO 15400 --- [login] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-06-26T01:40:51.922-04:00  INFO 15400 --- [login] [main] c.l.l.L.LoginControllerTests             : Started LoginControllerTests in 7.919 seconds (process running for 12.086)

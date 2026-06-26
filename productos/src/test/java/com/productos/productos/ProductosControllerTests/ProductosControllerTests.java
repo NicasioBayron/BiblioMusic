@@ -11,9 +11,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,10 +28,10 @@ public class ProductosControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    // CORRECCIÓN: Se remueve el @Autowired que rompía la inyección
     private ObjectMapper objectMapper;
 
-    @MockBean
+    @MockitoBean
     private ProductoService productoService;
 
     private Producto producto;
@@ -39,6 +39,9 @@ public class ProductosControllerTests {
 
     @BeforeEach
     void setUp() {
+        // CORRECCIÓN: Instanciación manual limpia del serializador
+        objectMapper = new ObjectMapper();
+
         producto = new Producto();
         producto.setId_producto(1L);
         producto.setNombre_producto("Libro Test");
@@ -47,12 +50,12 @@ public class ProductosControllerTests {
         producto.setStock(10);
 
         productoDTO = ProductoDTO.builder()
-            .id_producto(1L)
-            .nombre_producto("Libro Test")
-            .tipo_producto("Física")
-            .precio(150.0)
-            .stock(10)
-            .build();
+                .id_producto(1L)
+                .nombre_producto("Libro Test")
+                .tipo_producto("Física")
+                .precio(150.0)
+                .stock(10)
+                .build();
     }
 
     @Test
@@ -60,8 +63,8 @@ public class ProductosControllerTests {
         when(productoService.getProductoById(1L)).thenReturn(producto);
 
         mockMvc.perform(get("/producto/1"))
-            .andExpect(status().isOk())
-            .andExpect(content().json(objectMapper.writeValueAsString(ProductoDTO.fromModel(producto))));
+                .andExpect(status().isOk())
+                .andExpect(content().json(objectMapper.writeValueAsString(ProductoDTO.fromModel(producto))));
     }
 
     @Test
@@ -69,10 +72,10 @@ public class ProductosControllerTests {
         when(productoService.crearProducto(any(Producto.class))).thenReturn(producto);
 
         mockMvc.perform(post("/producto")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(productoDTO)))
-            .andExpect(status().isOk())
-            .andExpect(content().string("Producto creado exitosamente"));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(productoDTO)))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Producto creado exitosamente"));
     }
 
     @Test
@@ -80,10 +83,9 @@ public class ProductosControllerTests {
         when(productoService.actualizarProducto(any(Producto.class))).thenReturn(producto);
 
         mockMvc.perform(put("/producto")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(productoDTO)))
-            .andExpect(status().isOk())
-            .andExpect(content().string("Producto actualizado exitosamente"));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(productoDTO)))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Producto actualizado exitosamente"));
     }
 }
-

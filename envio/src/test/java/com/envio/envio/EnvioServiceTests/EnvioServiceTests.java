@@ -29,33 +29,57 @@ public class EnvioServiceTests {
     @InjectMocks
     private EnvioService envioService;
 
-    private Envio envio;
+    private Envio envioEntidad;
+    private EnvioDTO envioDtoInput;
 
     @BeforeEach
     void setUp() {
-        envio = new Envio(1L, 10L, 100L, 1L, "ENTREGADO", LocalDate.of(2026, 6, 25), "Dirección A");
+        envioEntidad = new Envio();
+        envioEntidad.setId_envio(1L);
+        envioEntidad.setId_pago(10L);
+        envioEntidad.setId_usuario(100L);
+        envioEntidad.setId_carrito(1L);
+        envioEntidad.setEstado_envio("ENTREGADO");
+        envioEntidad.setFecha_envio(LocalDate.of(2026, 6, 25));
+        envioEntidad.setDireccion_envio("Dirección A");
+
+        envioDtoInput = new EnvioDTO();
+        envioDtoInput.setId_envio(1L);
+        envioDtoInput.setId_pago(10L);
+        envioDtoInput.setId_usuario(100L);
+        envioDtoInput.setId_carrito(1L);
+        envioDtoInput.setEstado_envio("ENTREGADO");
+        envioDtoInput.setFecha_envio(LocalDate.of(2026, 6, 25));
+        envioDtoInput.setDireccion_envio("Dirección A");
     }
 
     @Test
     void testGetAllEnvios() {
-        when(envioRepository.findAll()).thenReturn(Arrays.asList(envio));
-        List<Envio> list = envioService.getAllEnvios();
+        when(envioRepository.findAll()).thenReturn(Arrays.asList(envioEntidad));
+
+        List<EnvioDTO> list = envioService.getAllEnvios();
+
+        assertNotNull(list);
         assertEquals(1, list.size());
         assertEquals("ENTREGADO", list.get(0).getEstado_envio());
     }
 
     @Test
     void testCrearEnvio() {
-        when(envioRepository.save(any(Envio.class))).thenReturn(envio);
-        Envio created = envioService.crearEnvio(envio);
+        when(envioRepository.save(any(Envio.class))).thenReturn(envioEntidad);
+
+        EnvioDTO created = envioService.crearEnvio(envioDtoInput);
+
         assertNotNull(created);
         assertEquals(1L, created.getId_envio());
     }
 
     @Test
     void testGetEnvioById() {
-        when(envioRepository.findById(1L)).thenReturn(Optional.of(envio));
-        Envio found = envioService.getEnvioById(1L);
+        when(envioRepository.findById(1L)).thenReturn(Optional.of(envioEntidad));
+
+        EnvioDTO found = envioService.getEnvioById(1L);
+
         assertNotNull(found);
         assertEquals(1L, found.getId_envio());
     }
@@ -63,17 +87,28 @@ public class EnvioServiceTests {
     @Test
     void testGetEnvioById_NotFound() {
         when(envioRepository.findById(2L)).thenReturn(Optional.empty());
-        Envio found = envioService.getEnvioById(2L);
+
+        EnvioDTO found = envioService.getEnvioById(2L);
+
         assertNull(found);
     }
 
     @Test
     void testActualizarEnvio() {
-        Envio updatedInfo = new Envio(null, 15L, 100L, 2L, "EN_CAMINO", LocalDate.of(2026, 6, 25), "Nueva Dirección");
-        when(envioRepository.findById(1L)).thenReturn(Optional.of(envio));
+        EnvioDTO updatedDtoInfo = new EnvioDTO();
+        updatedDtoInfo.setId_pago(15L);
+        updatedDtoInfo.setId_usuario(100L);
+        updatedDtoInfo.setId_carrito(2L);
+        updatedDtoInfo.setEstado_envio("EN_CAMINO");
+        updatedDtoInfo.setFecha_envio(LocalDate.of(2026, 6, 25));
+        updatedDtoInfo.setDireccion_envio("Nueva Dirección");
+
+        when(envioRepository.findById(1L)).thenReturn(Optional.of(envioEntidad));
+        // RETORNO DINÁMICO: Devuelve el objeto modificado que el método save() recibe
+        // por parámetro
         when(envioRepository.save(any(Envio.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        Envio result = envioService.actualizarEnvio(1L, updatedInfo);
+        EnvioDTO result = envioService.actualizarEnvio(1L, updatedDtoInfo);
 
         assertNotNull(result);
         assertEquals("EN_CAMINO", result.getEstado_envio());
@@ -83,7 +118,9 @@ public class EnvioServiceTests {
     @Test
     void testActualizarEnvio_NotFound() {
         when(envioRepository.findById(1L)).thenReturn(Optional.empty());
-        Envio result = envioService.actualizarEnvio(1L, envio);
+
+        EnvioDTO result = envioService.actualizarEnvio(1L, envioDtoInput);
+
         assertNull(result);
     }
 
@@ -93,6 +130,7 @@ public class EnvioServiceTests {
         doNothing().when(envioRepository).deleteById(1L);
 
         boolean result = envioService.eliminarEnvio(1L);
+
         assertTrue(result);
         verify(envioRepository, times(1)).deleteById(1L);
     }
@@ -100,7 +138,9 @@ public class EnvioServiceTests {
     @Test
     void testEliminarEnvio_NotFound() {
         when(envioRepository.existsById(1L)).thenReturn(false);
+
         boolean result = envioService.eliminarEnvio(1L);
+
         assertFalse(result);
         verify(envioRepository, never()).deleteById(anyLong());
     }

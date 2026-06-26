@@ -41,12 +41,12 @@ public class ProductosServiceTests {
         producto.setStock(10);
 
         productoDTO = ProductoDTO.builder()
-            .id_producto(1L)
-            .nombre_producto("Libro Test")
-            .tipo_producto("Física")
-            .precio(150.0)
-            .stock(10)
-            .build();
+                .id_producto(1L)
+                .nombre_producto("Libro Test")
+                .tipo_producto("Física")
+                .precio(150.0)
+                .stock(10)
+                .build();
     }
 
     @Test
@@ -71,15 +71,15 @@ public class ProductosServiceTests {
 
     @Test
     void testActualizarProducto() {
-        when(productoRepository.save(any(Producto.class))).thenReturn(producto);
-
+        // CORRECCIÓN: Devolver dinámicamente el argumento recibido en el save
+        when(productoRepository.save(any(Producto.class))).thenAnswer(invocation -> invocation.getArgument(0));
         ProductoDTO updatedDto = ProductoDTO.builder()
-            .id_producto(1L)
-            .nombre_producto("Libro Editado")
-            .tipo_producto("Física")
-            .precio(175.0)
-            .stock(12)
-            .build();
+                .id_producto(1L)
+                .nombre_producto("Libro Editado")
+                .tipo_producto("Física")
+                .precio(175.0)
+                .stock(12)
+                .build();
 
         Producto result = productoService.actualizarProducto(updatedDto.toModel());
 
@@ -88,4 +88,3 @@ public class ProductosServiceTests {
         assertEquals(updatedDto.getPrecio(), result.getPrecio());
     }
 }
-

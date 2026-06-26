@@ -33,27 +33,49 @@ public class PagoServiceTests {
     @InjectMocks
     private PagoService pagoService;
 
-    private Pago pago;
+    private Pago pagoEntidad;
+    private PagoDTO pagoDtoInput;
 
     @BeforeEach
     void setUp() {
-        pago = new Pago(1L, 10L, 5000.0, 2500.0, 2, "Tarjeta", "APROBADO", LocalDate.of(2026, 6, 25));
+        pagoEntidad = new Pago(1L, 10L, 5000.0, 2500.0, 2, "Tarjeta", "APROBADO", LocalDate.of(2026, 6, 25));
+
+        pagoDtoInput = new PagoDTO();
+        pagoDtoInput.setIdPago(1L);
+        pagoDtoInput.setIdCarrito(10L);
+        pagoDtoInput.setTotal(5000.0);
+        pagoDtoInput.setPrecioProducto(2500.0);
+        pagoDtoInput.setCantidad(2);
+        pagoDtoInput.setMedioPago("Tarjeta");
+        pagoDtoInput.setConfirmacionPago("APROBADO");
+        pagoDtoInput.setFechaPago(LocalDate.of(2026, 6, 25));
     }
 
     @Test
     void testGetAllPagos() {
-        when(pagoRepository.findAll()).thenReturn(Arrays.asList(pago));
-        List<Pago> list = pagoService.getAllPagos();
+        when(pagoRepository.findAll()).thenReturn(Arrays.asList(pagoEntidad));
+
+        List<PagoDTO> list = pagoService.getAllPagos();
+
+        assertNotNull(list);
         assertEquals(1, list.size());
         assertEquals(5000.0, list.get(0).getTotal());
     }
 
     @Test
     void testCrearPago_calculatesTotal() {
-        Pago input = new Pago(null, 10L, 0.0, 1500.0, 3, "Tarjeta", "APROBADO", LocalDate.of(2026, 6, 25));
+        PagoDTO input = new PagoDTO();
+        input.setIdCarrito(10L);
+        input.setTotal(0.0);
+        input.setPrecioProducto(1500.0);
+        input.setCantidad(3);
+        input.setMedioPago("Tarjeta");
+        input.setConfirmacionPago("APROBADO");
+        input.setFechaPago(LocalDate.of(2026, 6, 25));
+
         when(pagoRepository.save(any(Pago.class))).thenAnswer(inv -> inv.getArgument(0));
 
-        Pago created = pagoService.crearPago(input);
+        PagoDTO created = pagoService.crearPago(input);
 
         assertNotNull(created);
         assertEquals(4500.0, created.getTotal());
@@ -61,8 +83,10 @@ public class PagoServiceTests {
 
     @Test
     void testGetPagoById() {
-        when(pagoRepository.findById(1L)).thenReturn(Optional.of(pago));
-        Pago found = pagoService.getPagoById(1L);
+        when(pagoRepository.findById(1L)).thenReturn(Optional.of(pagoEntidad));
+
+        PagoDTO found = pagoService.getPagoById(1L);
+
         assertNotNull(found);
         assertEquals(1L, found.getIdPago());
     }
@@ -70,17 +94,25 @@ public class PagoServiceTests {
     @Test
     void testGetPagoById_NotFound() {
         when(pagoRepository.findById(2L)).thenReturn(Optional.empty());
-        Pago found = pagoService.getPagoById(2L);
+
+        PagoDTO found = pagoService.getPagoById(2L);
+
         assertNull(found);
     }
 
     @Test
     void testActualizarPago() {
-        Pago updatedInfo = new Pago(null, 11L, 6000.0, null, null, "Efectivo", "PENDIENTE", LocalDate.of(2026, 6, 25));
-        when(pagoRepository.findById(1L)).thenReturn(Optional.of(pago));
+        PagoDTO updatedInfo = new PagoDTO();
+        updatedInfo.setIdCarrito(11L);
+        updatedInfo.setTotal(6000.0);
+        updatedInfo.setMedioPago("Efectivo");
+        updatedInfo.setConfirmacionPago("PENDIENTE");
+        updatedInfo.setFechaPago(LocalDate.of(2026, 6, 25));
+
+        when(pagoRepository.findById(1L)).thenReturn(Optional.of(pagoEntidad));
         when(pagoRepository.save(any(Pago.class))).thenAnswer(inv -> inv.getArgument(0));
 
-        Pago result = pagoService.actualizarPago(1L, updatedInfo);
+        PagoDTO result = pagoService.actualizarPago(1L, updatedInfo);
 
         assertNotNull(result);
         assertEquals(6000.0, result.getTotal());
@@ -91,7 +123,9 @@ public class PagoServiceTests {
     @Test
     void testActualizarPago_NotFound() {
         when(pagoRepository.findById(1L)).thenReturn(Optional.empty());
-        Pago result = pagoService.actualizarPago(1L, pago);
+
+        PagoDTO result = pagoService.actualizarPago(1L, pagoDtoInput);
+
         assertNull(result);
     }
 
@@ -101,6 +135,7 @@ public class PagoServiceTests {
         doNothing().when(pagoRepository).deleteById(1L);
 
         boolean result = pagoService.eliminarPago(1L);
+
         assertTrue(result);
         verify(pagoRepository, times(1)).deleteById(1L);
     }
@@ -108,7 +143,9 @@ public class PagoServiceTests {
     @Test
     void testEliminarPago_NotFound() {
         when(pagoRepository.existsById(1L)).thenReturn(false);
+
         boolean result = pagoService.eliminarPago(1L);
+
         assertFalse(result);
         verify(pagoRepository, never()).deleteById(anyLong());
     }
