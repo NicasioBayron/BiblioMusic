@@ -1,5 +1,6 @@
 package com.cupones.cupones.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cupones.cupones.model.Cupones;
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class CuponServices {
 
+    @Autowired
     private CuponRepository cuponRepository;
 
     public List<Cupones> listarCupones() {

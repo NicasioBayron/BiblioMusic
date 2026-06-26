@@ -31,10 +31,10 @@ spring:
           predicates:
             - Path=/envio/**
 
-        - id: provedorees
+        - id: proveedores
           uri: http://provedorees-service:8086
           predicates:
-          - Path=/provedorees/**
+          - Path=/proveedores/**
 
         - id: resenas
           uri: http://resenas-service:8087
